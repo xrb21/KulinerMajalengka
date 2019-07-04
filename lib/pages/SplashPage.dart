@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown,
+      backgroundColor: Color(0xFF231f20),
       body: Stack(
         children: <Widget>[
           //untuk logo kuliner majalengka yang ditengah
