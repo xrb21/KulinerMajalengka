@@ -8,164 +8,184 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  TextEditingController cEmail  = TextEditingController();
+  var cPassword = TextEditingController();
+
+  //key untuk scaffold / page
+  final _keyScaffold = GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _keyScaffold,
+      backgroundColor: Color(0xff201b1f),
       appBar: AppBar(
-        backgroundColor: Color(0xFF231f20),
-        centerTitle: true,
+        backgroundColor: Colors.transparent,
         title: Text(
           "Login",
-          style: TextStyle(color: Color(0xFF777677)),
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
         elevation: 0,
+        centerTitle: true,
       ),
-      backgroundColor: Color(0xFF231f20),
+
       body: Stack(
         children: <Widget>[
           Positioned(
             top: 20,
-            left: 40,
-            right: 40,
-            child: Image.asset(
-              "assets/images/image_splash_alt.png",
-              width: 200,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Image.asset("assets/images/image_splash_alt.png"),
             ),
           ),
+
+          //cardview untuk form login
           Positioned(
-            bottom: 20,
             left: 20,
             right: 20,
+            bottom: 20,
             child: Card(
-              elevation: 4,
+
               color: Colors.white,
-              borderOnForeground: true,
               child: Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    Text(
-                      "Silahkan untuk login",
-                      textAlign: TextAlign.start,
+                    //judul di pas login form
+                    Text("Silahkan untuk Login",
+                      textAlign: TextAlign.left,
                       style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xffffc83c),
-                          fontWeight: FontWeight.w300),
-                    ),
+                        fontSize: 18,
+                        color: Colors.deepOrangeAccent,
+                        fontWeight: FontWeight.w300
+                    ),),
+
+                    //untuk field email
+                    //gunakan kelasnya TextField atau TextFormField
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding: EdgeInsets.only(top: 20),
                       child: TextFormField(
-                        style:
-                        TextStyle(color: Color(0xff696969), fontSize: 14),
+                        controller: cEmail,
+                        //decorasi / style pada textinput
                         decoration: InputDecoration(
-                            hintText: "Email",
-                            filled: true,
-                            fillColor: Color(0xfffafafa),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Color(0xfff6f6f6), width: 1),
+                            //icon sebelah kiri
+                            prefixIcon: Icon(Icons.email),
+                          hintText: "Email",
+                            //untuk merubah warna textfield
+                          filled: true,
+                          fillColor: Color(0xfff6f6f6f6),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:  BorderSide(
+                              color: Colors.blueGrey,
+                              width: 1,
                             ),
-                            border: const OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(6))),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 16)),
+                            borderRadius: BorderRadius.all(Radius.circular(8))
+                          )
+                        ),
                       ),
                     ),
+
+                    //input untuk password
                     Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
+                      padding: EdgeInsets.only(top: 20),
                       child: TextFormField(
+                        controller: cPassword,
                         obscureText: true,
-                        style:
-                        TextStyle(color: Color(0xff696969), fontSize: 14),
+                        //decorasi / style pada textinput
                         decoration: InputDecoration(
+                          //icon sebelah kiri
+                            prefixIcon: Icon(Icons.lock),
                             hintText: "Password",
+                            //untuk merubah warna textfield
                             filled: true,
-                            fillColor: Color(0xfffafafa),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Color(0xfff6f6f6), width: 1),
-                            ),
-                            border: const OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(6))),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 16)),
+                            fillColor: Color(0xfff6f6f6f6),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:  BorderSide(
+                                  color: Colors.blueGrey,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(8))
+                            )
+                        ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 12),
-                      width: double.infinity,
-                      height: 54,
-                      child: RaisedButton(
-                        elevation: 0,
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(6)),
-                        onPressed: () {
-                          //action saat tombo login diklik
-                        },
-                        color: Color(0xffffc83c),
-                        textColor: Colors.white,
-                        child: Text("L O G I N"),
-                      ),
-                    ),
+
+                    //menambhakan tombol submit untuk login
                     Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          InkWell(
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Text(
-                                "Belum punya akun? DAFTAR",
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xff606060),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                            onTap: () {
-                              //action saat klik daftar
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DaftarPage()));
-                            },
-                          ),
-                          InkWell(
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Text(
-                                "Lupa Password?",
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xff606060),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                            onTap: () {
-                             //action saat lupa password
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          LupaPasswordPage()));
-                            },
-                          ),
-                        ],
+                      padding: EdgeInsets.all(16),
+                      child: Container(
+                        width: double.infinity,
+                        child: RaisedButton(
+                          elevation: 0,
+                          child: Text("L O G I N"),
+                          color: Colors.orange,
+                          textColor: Colors.white,
+                          onPressed: (){
+                            //action ketika diklik tombolnya
+                            print("input masuk email : ${cEmail.text} dan password: ${cPassword.text} ");
+                            //method untuk handle saat tombol diklik
+                            actionLogin();
+
+                          },
+                        ),
                       ),
+
+                    ),
+
+                    //untuk link daftar dan lupa password
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //kelas handle klik efect material design
+                        InkWell(
+                          onTap: (){
+                            //pindahakan ke halaman pendaftaran
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => DaftarPage()
+                              ));
+                          },
+                            child: Text("Belum punya akun? DAFTAR")),
+                        GestureDetector(
+                          onTap: (){
+                            //pindahakan ke halaman pendaftaran
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => LupaPasswordPage()
+                            ));
+                          },
+                            child: Text("Lupa Password?"))
+                      ],
                     )
+
+
                   ],
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
+  }
+
+  void actionLogin() {
+    //kita cek isi dari email dan password
+    if (cEmail.text == ""){
+      print("debug lewat sini");
+      _keyScaffold.currentState.showSnackBar(SnackBar(content: Text("Email harus diiisi")));
+    }else if (cPassword.text == ""){
+      _keyScaffold.currentState.showSnackBar(SnackBar(content: Text("Password harus diiisi")));
+    }else if (cPassword.text.length < 6 ){
+      _keyScaffold.currentState.showSnackBar(SnackBar(content: Text("Minimal Password 6 digit")));
+    }else{
+      //proses kirim ke api
+    }
   }
 }

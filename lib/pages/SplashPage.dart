@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kuliner_majalengka_training/pages/register/LoginPage.dart';
+import 'package:kuliner_majalengka_training/pages/register/LoginPage2.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+
   @override
   void initState() {
     // TODO: implement initState
@@ -14,11 +16,13 @@ class _SplashPageState extends State<SplashPage> {
 
     //untuk berpindah halaman setelah tampil splash 3detik
     Future.delayed(Duration(seconds: 3), (){
+      //actionya setelah 3detik
       Navigator.push(context,
           MaterialPageRoute(
               builder: (context) => LoginPage()));
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
