@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kuliner_majalengka_training/pages/register/DaftarPage.dart';
 import 'package:kuliner_majalengka_training/pages/register/LupaPasswordPage.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage2 extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
