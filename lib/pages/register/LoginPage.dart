@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:kuliner_majalengka_training/pages/register/DaftarPage.dart';
 import 'package:kuliner_majalengka_training/pages/register/LupaPasswordPage.dart';
 
+//import untuk librarty http
+import 'package:http/http.dart' as http;
+//untuk conver respon dr server ke json
+import 'dart:convert';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -175,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void actionLogin() {
+  Future actionLogin() async {
     //kita cek isi dari email dan password
     if (cEmail.text == ""){
       print("debug lewat sini");
@@ -185,7 +190,43 @@ class _LoginPageState extends State<LoginPage> {
     }else if (cPassword.text.length < 6 ){
       _keyScaffold.currentState.showSnackBar(SnackBar(content: Text("Minimal Password 6 digit")));
     }else{
-      //proses kirim ke api
+      //proses kirim ke api untuk login dengan langkah2 berikut:
+      //1. karena methodnya post untuk login maka kita buat dahulu parameter postnya
+      //parameter post kita buat dgn menggunakan map seperti berikut
+      var params = <String, dynamic> {
+        "f_email": cEmail.text,
+        "f_password": cPassword.text
+      };
+
+      //2. buat url endpointnya
+      final url = "http://training.ercode.id/api/login";
+
+      //3. send data login keserver, kita gunakan await untuk proses asyncronous biar proses hit ke server di background,
+      //jadi ui tidak hang
+      final response = await http.post(url, body: params);
+
+      print("response dari server status : ${response.statusCode} isinya: ${response.body}");
+      //4. convert data respond dari server ke bentuk json
+      final data = json.decode(response.body);
+      //5. cek apakah loginnya berhasil atau tidak;
+      final hasil = data["result"];
+      final msg = data["msg"];
+
+      if (hasil){
+        //ambil data user dari jsonya
+        final dUser = data["data"];
+        print("respon dUser: ${dUser}");
+        var nama = dUser['user_nama'];
+        var email = dUser['user_email'];
+        var hp = dUser['user_hp'];
+
+        _keyScaffold.currentState.showSnackBar(SnackBar(content: Text("nama $nama, email $email, hp $hp")));
+
+      }else{
+        //keluarkan msg errronya
+        _keyScaffold.currentState.showSnackBar(SnackBar(content: Text(msg)));
+      }
+
     }
   }
 }
