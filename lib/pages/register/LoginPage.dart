@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kuliner_majalengka_training/pages/home/MenuBawah.dart';
 import 'package:kuliner_majalengka_training/pages/register/DaftarPage.dart';
 import 'package:kuliner_majalengka_training/pages/register/LupaPasswordPage.dart';
 
@@ -162,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: (){
                             //pindahakan ke halaman pendaftaran
                             Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => LupaPasswordPage()
+                                builder: (context) => MenuBawah()
                             ));
                           },
                             child: Text("Lupa Password?"))
@@ -221,6 +222,8 @@ class _LoginPageState extends State<LoginPage> {
         var hp = dUser['user_hp'];
 
         _keyScaffold.currentState.showSnackBar(SnackBar(content: Text("nama $nama, email $email, hp $hp")));
+
+
 
       }else{
         //keluarkan msg errronya
