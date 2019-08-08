@@ -147,27 +147,30 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     //untuk link daftar dan lupa password
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        //kelas handle klik efect material design
-                        InkWell(
-                          onTap: (){
-                            //pindahakan ke halaman pendaftaran
+                    Container(
+                      width: double.infinity,
+                      child: Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        children: <Widget>[
+                          //kelas handle klik efect material design
+                          InkWell(
+                            onTap: (){
+                              //pindahakan ke halaman pendaftaran
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => DaftarPage()
+                                ));
+                            },
+                              child: Text("Belum punya akun? DAFTAR")),
+                          GestureDetector(
+                            onTap: (){
+                              //pindahakan ke halaman pendaftaran
                               Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => DaftarPage()
+                                  builder: (context) => MenuBawah()
                               ));
-                          },
-                            child: Text("Belum punya akun? DAFTAR")),
-                        GestureDetector(
-                          onTap: (){
-                            //pindahakan ke halaman pendaftaran
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => MenuBawah()
-                            ));
-                          },
-                            child: Text("Lupa Password?"))
-                      ],
+                            },
+                              child:  Text("Lupa Password?"))
+                        ],
+                      ),
                     )
 
 

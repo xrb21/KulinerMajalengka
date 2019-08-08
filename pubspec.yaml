@@ -25,6 +25,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   # library untuk koneksi ke server
   http: ^0.12.0+2
+  #untuk ratting
+  smooth_star_rating: ^1.0.3
 
 dev_dependencies:
   flutter_test:
